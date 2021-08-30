@@ -16,11 +16,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String welcomeMessege="Welcome ";
-        SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String username=sharedPreferences.getString("username","username");
-        TextView usernameveiw=findViewById(R.id.textView2);
-        usernameveiw.setText(welcomeMessege+username);
         Button addTask=findViewById(R.id.button);
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,5 +77,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        String welcomeMessege="Welcome ";
+        SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String username=sharedPreferences.getString("username","username");
+        TextView usernameveiw=findViewById(R.id.textView2);
+        usernameveiw.setText(welcomeMessege+username);
     }
 }
