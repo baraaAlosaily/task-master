@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         String welcomeMessege="Welcome ";
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String username=sharedPreferences.getString("username","username");
+        String username=sharedPreferences.getString("username","User");
         TextView usernameveiw=findViewById(R.id.textView2);
         usernameveiw.setText(welcomeMessege+username);
     }
