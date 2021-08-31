@@ -44,18 +44,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.289" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="335dp"
-        android:layout_height="323dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306"
-        app:srcCompat="@drawable/img_dubai_uae" />
-
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
@@ -93,6 +81,15 @@
         android:layout_marginStart="128dp"
         android:layout_marginTop="608dp"
         android:text="Settings page"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/datarcyclerview"
+        android:layout_width="341dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="152dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

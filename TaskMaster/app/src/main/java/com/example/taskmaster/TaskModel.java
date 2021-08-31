@@ -10,4 +10,16 @@ public class TaskModel {
         this.body = body;
         this.state = state;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getState() {
+        return state;
+    }
 }
