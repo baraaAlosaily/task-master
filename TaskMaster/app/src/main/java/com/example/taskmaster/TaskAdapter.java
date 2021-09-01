@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,7 +64,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVeiwHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, TaskDetailPage.class);
-                intent.putExtra("title",allTask.get(position).getBody() );
+                intent.putExtra("title",allTask.get(position).getTitle() );
                 intent.putExtra("body", allTask.get(position).getBody());
                 intent.putExtra("state", allTask.get(position).getState());
                 context.startActivity(intent);
