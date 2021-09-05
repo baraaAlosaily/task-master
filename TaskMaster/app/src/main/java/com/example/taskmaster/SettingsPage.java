@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -30,6 +31,8 @@ public class SettingsPage extends AppCompatActivity {
 
             sharedPreferencesEditor.putString("username",username);
             sharedPreferencesEditor.apply();
+            Intent goToMain=new Intent(SettingsPage.this,MainActivity.class);
+            startActivity(goToMain);
 
         });
 

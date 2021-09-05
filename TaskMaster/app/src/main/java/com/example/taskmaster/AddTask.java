@@ -40,9 +40,9 @@ public class AddTask extends AppCompatActivity {
                 
                 taskDao.insertOne(newTask);
 
-//                Intent goToAllTasls=new Intent(AddTask.this,AllTasks.class);
-//                goToAllTasls.putExtra("tasktitle",taskTitleValue);
-//                goToAllTasls.putExtra("taskdesc",taskDescValue);
+                Intent goToAllTasls=new Intent(AddTask.this,MainActivity.class);
+                startActivity(goToAllTasls);
+//
             }
         });
     }
