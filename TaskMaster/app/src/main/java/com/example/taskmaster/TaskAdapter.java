@@ -12,16 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Todo;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVeiwHolder> {
 
-    List<TaskModel> allTask=new ArrayList<>();
+    List<Todo> allTask=new ArrayList<>();
     Context context;
 
-    public TaskAdapter(List<TaskModel> allTask,Context context) {
+    public TaskAdapter(List<Todo> allTask, Context context) {
         this.allTask = allTask;
         this.context=context;
     }
@@ -33,7 +35,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVeiwHolder
     public static class TaskVeiwHolder extends RecyclerView.ViewHolder {
         View itemView;
         ConstraintLayout mainLayout;
-        public TaskModel taskModel;
+        public Todo taskModel;
 
         public TaskVeiwHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,11 +56,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVeiwHolder
     public void onBindViewHolder(@NonNull TaskVeiwHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.taskModel=allTask.get(position);
         TextView tasktitle=holder.itemView.findViewById(R.id.titleview);
-        tasktitle.setText(holder.taskModel.title);
+        tasktitle.setText(holder.taskModel.getTitle());
         TextView taskbody=holder.itemView.findViewById(R.id.bodyView);
-        taskbody.setText(holder.taskModel.body);
+        taskbody.setText(holder.taskModel.getBody());
         TextView taskstate=holder.itemView.findViewById(R.id.stateView);
-        taskstate.setText(holder.taskModel.state);
+        taskstate.setText(holder.taskModel.getState());
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
