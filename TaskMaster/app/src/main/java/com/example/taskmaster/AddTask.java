@@ -5,10 +5,17 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Todo;
 
 public class AddTask extends AppCompatActivity {
 
@@ -19,8 +26,6 @@ public class AddTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-
-
         appDataBase= Room.databaseBuilder(getApplicationContext(),AppDataBase.class,"task").allowMainThreadQueries().build();
         taskDao=appDataBase.taskDao();
 
@@ -36,9 +41,30 @@ public class AddTask extends AppCompatActivity {
                 String taskDescValue=taskDesk.getText().toString();
                 String taskStateValue=taskstate.getText().toString();
 
-                TaskModel newTask=new TaskModel(taskTitleValue,taskDescValue,taskStateValue);
+//                TaskModel newTask=new TaskModel(taskTitleValue,taskDescValue,taskStateValue);
+
+//                try {
+//                    // Add these lines to add the AWSApiPlugin plugins
+//                    Amplify.addPlugin(new AWSApiPlugin());
+//                    Amplify.configure(getApplicationContext());
+//
+//                    Log.i("MyAmplifyApp", "Initialized Amplify");
+
+                    Todo todo = Todo.builder()
+                            .title(taskTitleValue)
+                            .body(taskDescValue).state(taskStateValue)
+                            .build();
+
+                    Amplify.API.mutate(
+                            ModelMutation.create(todo),
+                            response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+                            error -> Log.e("MyAmplifyApp", "Create failed", error)
+                    );
+//                } catch (AmplifyException error) {
+//                    Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+//                }
                 
-                taskDao.insertOne(newTask);
+//                taskDao.insertOne(newTask);
 
                 Intent goToAllTasls=new Intent(AddTask.this,MainActivity.class);
                 startActivity(goToAllTasls);
