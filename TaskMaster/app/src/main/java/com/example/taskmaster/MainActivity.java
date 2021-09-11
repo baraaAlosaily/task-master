@@ -24,6 +24,7 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.datastore.generated.model.Todo;
 
 import java.util.ArrayList;
@@ -141,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
+
+        SharedPreferences sharedPreferences1=PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String team=sharedPreferences1.getString("team","team");
+
+        List<Team>teams=new ArrayList<>();
+        List<TaskModel> taskModels=new ArrayList<>();
+
         RecyclerView allDishesRecycleView = findViewById(R.id.datarcyclerview);
 
         Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
@@ -150,18 +158,22 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-//
-//
 //        AppDataBase appDataBase = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "task").allowMainThreadQueries().build();
 //        TaskDao taskDao = appDataBase.taskDao();
         List<Todo> taskList = new ArrayList<Todo>();
 
         Amplify.API.query(
-                ModelQuery.list(com.amplifyframework.datastore.generated.model.Todo.class),
+                ModelQuery.list(com.amplifyframework.datastore.generated.model.Team.class),
                 response -> {
-                    for (Todo todo : response.getData()) {
-//                        Log.i("MyAmplifyApp", todo.getName());
-                        taskList.add(todo);
+                    for (Team tema : response.getData()) {
+//                        Log.i("MyAmplifyApp", tema.getName());
+//                        Log.i("MyAmplifyApp", tema.getId());
+                        teams.add(tema);
+                    }
+                    for (int i = 0; i < teams.size(); i++) {
+                        if (teams.get(i).getName().equals(team)){
+                            taskList.addAll(teams.get(i).getTasks());
+                        }
                     }
                     handler.sendEmptyMessage(1);
                 },
@@ -169,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
         );
         allDishesRecycleView.setAdapter(new TaskAdapter(taskList,this));
         allDishesRecycleView.setLayoutManager(new LinearLayoutManager(this));
-
+        String team1 = sharedPreferences.getString("team", "team");
+        TextView teamName = findViewById(R.id.teamNameHome);
+        teamName.setText(team1);
     }
 }
