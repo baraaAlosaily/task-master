@@ -10,4 +10,5 @@ Lab num|Date|Lab description|ScreenShot
 29|1/9|1. Create local Data base by using room concepte 2. The first step is to add dependies that related to room dB 2. Create databaseapp that will work as contoller of our db 3. Create Dao class that will work as repository of DB 4. Add entities to my  model 5. insert code lines that will save each model intance that will created in my data base |[link](./Screenshot4.md)
 31|6/9|1.Add espresso dependencies ad do espresso test for specific scinario on my applicatio|[link](./Screenshot4.md)|
 32|7/9| 1.Create AWS acount and deploy our database as server in the Amplify 2. get our data again from DynamoDB and disply it were i want show it|[link](./Screenshot5.md)
+33|12/9| 1.In addtion to the previuos lab i just add a new three team hard coded and create reation between them and task so the one team will have many tasks|[link](./Screenshot6.md)
 

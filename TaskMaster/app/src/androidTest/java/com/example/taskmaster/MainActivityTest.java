@@ -45,12 +45,12 @@ public class MainActivityTest {
     @Test
     public void isDsiplay(){
         onView(withId(R.id.button8)).perform(click());
-        onView(withId(R.id.textView6)).check(matches(isDisplayed()));
+        onView(withId(R.id.usernameInput)).check(matches(isDisplayed()));
     }
     @Test
     public void backToMain(){
         onView(withId(R.id.button8)).perform(click());
-        onView(withId(R.id.textView6)).check(matches(isDisplayed()));
+        onView(withId(R.id.usernameInput)).check(matches(isDisplayed()));
         pressBack();
         onView(withId(R.id.textView2)).check(matches(isDisplayed()));
     }
