@@ -22,6 +22,8 @@ import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -50,14 +52,8 @@ public class MainActivity extends AppCompatActivity {
 //        taskList.add(new TaskModel("Code Challenge-29", "Non", "new"));
 //
 //        TaskAdapter taskAdapter = new TaskAdapter(taskList, this);
-
-
-
-
-
-
-
-
+        Button logout=findViewById(R.id.logOut);
+        logout.setOnClickListener(view -> logout());
 
 
         addTask.setOnClickListener(new View.OnClickListener() {
@@ -104,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
         ContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button b = (Button)view;
-                String buttonText = b.getText().toString();
-                Intent goToallTask=new Intent(MainActivity.this,TaskDetailPage.class);
-                goToallTask.putExtra("contactus",buttonText);
+//                Button b = (Button)view;
+//                String buttonText = b.getText().toString();
+                Intent goToallTask=new Intent(MainActivity.this,signIn.class);
+//                goToallTask.putExtra("contactus",buttonText);
                 startActivity(goToallTask);
             }
         });
@@ -132,16 +128,25 @@ public class MainActivity extends AppCompatActivity {
         TextView usernameveiw = findViewById(R.id.textView2);
         usernameveiw.setText(welcomeMessege + username);
 
+        TextView username5=findViewById(R.id.textView11);
+        username5.setText(getCurrentValue());
 
-        try {
-            // Add these lines to add the AWSApiPlugin plugins
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
 
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
+//        try {
+//            // Add these lines to add the AWSApiPlugin plugins
+//            Amplify.addPlugin(new AWSApiPlugin());
+//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+//            Amplify.configure(getApplicationContext());
+//
+//            Log.i("MyAmplifyApp", "Initialized Amplify");
+//        } catch (AmplifyException error) {
+//            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+//        }
+//
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart", result.toString()),
+//                error -> Log.e("AmplifyQuickstart", error.toString())
+//        );
 
         SharedPreferences sharedPreferences1=PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String team=sharedPreferences1.getString("team","team");
@@ -161,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
 //        AppDataBase appDataBase = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "task").allowMainThreadQueries().build();
 //        TaskDao taskDao = appDataBase.taskDao();
         List<Todo> taskList = new ArrayList<Todo>();
-
         Amplify.API.query(
                 ModelQuery.list(com.amplifyframework.datastore.generated.model.Team.class),
                 response -> {
@@ -184,5 +188,24 @@ public class MainActivity extends AppCompatActivity {
         String team1 = sharedPreferences.getString("team", "team");
         TextView teamName = findViewById(R.id.teamNameHome);
         teamName.setText(team1);
+    }
+
+    String getCurrentValue(){
+        AuthUser authUser=Amplify.Auth.getCurrentUser();
+        Log.e("getCurrentUser", authUser.toString());
+        Log.e("getCurrentUser", authUser.getUserId());
+        Log.e("getCurrentUser", authUser.getUsername());
+        return authUser.getUsername();
+    }
+
+    public void logout(){
+        Amplify.Auth.signOut(
+                () ->{
+                    Log.i("logout", "successfully logout");
+                    Intent goToLogin = new Intent(getBaseContext(), signIn.class);
+                    startActivity(goToLogin);
+                } ,
+                error -> Log.e("logout", error.toString())
+        );
     }
 }
