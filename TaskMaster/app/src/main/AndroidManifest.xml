@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskMaster">
         <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".verification"
+            android:exported="true" />
+        <activity
+            android:name=".signUp"
+            android:exported="true" />
+        <activity
             android:name=".SettingsPage"
             android:exported="true" />
         <activity
@@ -22,7 +31,7 @@
             android:name=".AddTask"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".signIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

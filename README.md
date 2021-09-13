@@ -11,4 +11,5 @@ Lab num|Date|Lab description|ScreenShot
 31|6/9|1.Add espresso dependencies ad do espresso test for specific scinario on my applicatio|[link](./Screenshot4.md)|
 32|7/9| 1.Create AWS acount and deploy our database as server in the Amplify 2. get our data again from DynamoDB and disply it were i want show it|[link](./Screenshot5.md)
 33|12/9| 1.In addtion to the previuos lab i just add a new three team hard coded and create reation between them and task so the one team will have many tasks|[link](./Screenshot6.md)
+36|14/9| Today i create new three activities that will helped me to apply acognito perincple witch are sign in sign up and verfication|[link](./Screenshot7.md)
 
