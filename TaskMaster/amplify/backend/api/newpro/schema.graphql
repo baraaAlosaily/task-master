@@ -4,6 +4,7 @@ type Todo @model
   title: String!
   body: String
   state:String
+  img:String
    teamID:ID!
    team:Team! @connection(fields:["teamID"])
 }

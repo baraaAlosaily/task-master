@@ -2,26 +2,20 @@
 subscription OnCreateTodo {
   onCreateTodo {
     id
+    title
+    body
+    state
+    img
     teamID
     team {
       id
       name
       tasks {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
-    title
-    body
-    state
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -29,26 +23,20 @@ subscription OnCreateTodo {
 subscription OnUpdateTodo {
   onUpdateTodo {
     id
+    title
+    body
+    state
+    img
     teamID
     team {
       id
       name
       tasks {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
-    title
-    body
-    state
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -56,26 +44,20 @@ subscription OnUpdateTodo {
 subscription OnDeleteTodo {
   onDeleteTodo {
     id
+    title
+    body
+    state
+    img
     teamID
     team {
       id
       name
       tasks {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
-    title
-    body
-    state
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -87,22 +69,16 @@ subscription OnCreateTeam {
     tasks {
       items {
         id
-        teamID
         title
         body
         state
-        _version
-        _deleted
-        _lastChangedAt
+        img
+        teamID
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -114,22 +90,16 @@ subscription OnUpdateTeam {
     tasks {
       items {
         id
-        teamID
         title
         body
         state
-        _version
-        _deleted
-        _lastChangedAt
+        img
+        teamID
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -141,22 +111,16 @@ subscription OnDeleteTeam {
     tasks {
       items {
         id
-        teamID
         title
         body
         state
-        _version
-        _deleted
-        _lastChangedAt
+        img
+        teamID
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }

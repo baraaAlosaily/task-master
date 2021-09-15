@@ -5,26 +5,20 @@ mutation CreateTodo(
 ) {
   createTodo(input: $input, condition: $condition) {
     id
+    title
+    body
+    state
+    img
     teamID
     team {
       id
       name
       tasks {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
-    title
-    body
-    state
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -35,26 +29,20 @@ mutation UpdateTodo(
 ) {
   updateTodo(input: $input, condition: $condition) {
     id
+    title
+    body
+    state
+    img
     teamID
     team {
       id
       name
       tasks {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
-    title
-    body
-    state
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -65,26 +53,20 @@ mutation DeleteTodo(
 ) {
   deleteTodo(input: $input, condition: $condition) {
     id
+    title
+    body
+    state
+    img
     teamID
     team {
       id
       name
       tasks {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
-    title
-    body
-    state
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -99,22 +81,16 @@ mutation CreateTeam(
     tasks {
       items {
         id
-        teamID
         title
         body
         state
-        _version
-        _deleted
-        _lastChangedAt
+        img
+        teamID
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -129,22 +105,16 @@ mutation UpdateTeam(
     tasks {
       items {
         id
-        teamID
         title
         body
         state
-        _version
-        _deleted
-        _lastChangedAt
+        img
+        teamID
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -159,22 +129,16 @@ mutation DeleteTeam(
     tasks {
       items {
         id
-        teamID
         title
         body
         state
-        _version
-        _deleted
-        _lastChangedAt
+        img
+        teamID
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
