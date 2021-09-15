@@ -62,6 +62,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVeiwHolder
         TextView taskstate=holder.itemView.findViewById(R.id.stateView);
         taskstate.setText(holder.taskModel.getState());
 
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +70,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVeiwHolder
                 intent.putExtra("title",allTask.get(position).getTitle() );
                 intent.putExtra("body", allTask.get(position).getBody());
                 intent.putExtra("state", allTask.get(position).getState());
+                intent.putExtra("img", allTask.get(position).getImg());
                 context.startActivity(intent);
             }
         });

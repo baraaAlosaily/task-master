@@ -1,17 +1,18 @@
 package com.example.taskmaster;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class signIn extends AppCompatActivity {
 
@@ -51,7 +52,9 @@ public class signIn extends AppCompatActivity {
 
     void configure(){
                 try {
-            // Add these lines to add the AWSApiPlugin plugins
+//                    Amplify.addPlugin(new AWSCognitoAuthPlugin());
+                    Amplify.addPlugin(new AWSS3StoragePlugin());
+//             Add these lines to add the AWSApiPlugin plugins
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());

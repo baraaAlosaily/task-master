@@ -1,10 +1,18 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
+import com.amplifyframework.core.Amplify;
+
+import java.io.File;
 
 public class TaskDetailPage extends AppCompatActivity {
 
@@ -36,5 +44,21 @@ public class TaskDetailPage extends AppCompatActivity {
         ((TextView)findViewById(R.id.textView9)).setText(title);
         ((TextView)findViewById(R.id.textView5)).setText(body);
         ((TextView)findViewById(R.id.textView7)).setText(state);
+
+//
+        ImageView myimg=findViewById(R.id.imageView2);
+
+        if (i.getExtras().getString("img") != null) {
+            Amplify.Storage.downloadFile(
+                    i.getExtras().getString("img"),
+                    new File(getApplicationContext().getFilesDir() + "/" + i.getExtras().getString("img") + ".jpg"),
+                    result -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(result.getFile().getPath());
+                        myimg.setImageBitmap(bitmap);
+                        Log.i("MyAmplifyApp", "Successfully downloaded: " + result.getFile().getName());
+                    },
+                    error -> Log.e("MyAmplifyApp", "Download Failure", error)
+            );
+        }
     }
 }

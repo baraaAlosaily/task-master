@@ -1,11 +1,5 @@
 package com.example.taskmaster;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,19 +12,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.datastore.generated.model.Todo;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -45,6 +42,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button addTask=findViewById(R.id.button);
+
+        try {
+//                    Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
 
 //        taskList.add(new TaskModel("Code Challenge-26", "insertion-sort", "comleted"));
 //        taskList.add(new TaskModel("Code Challenge-27", "Merge-sort", "assigned"));
@@ -132,16 +142,6 @@ public class MainActivity extends AppCompatActivity {
         username5.setText(getCurrentValue());
 
 
-//        try {
-//            // Add these lines to add the AWSApiPlugin plugins
-//            Amplify.addPlugin(new AWSApiPlugin());
-//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-//            Amplify.configure(getApplicationContext());
-//
-//            Log.i("MyAmplifyApp", "Initialized Amplify");
-//        } catch (AmplifyException error) {
-//            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-//        }
 //
 //        Amplify.Auth.fetchAuthSession(
 //                result -> Log.i("AmplifyQuickstart", result.toString()),
@@ -168,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
         List<Todo> taskList = new ArrayList<Todo>();
         Amplify.API.query(
                 ModelQuery.list(com.amplifyframework.datastore.generated.model.Team.class),
-                response -> {
-                    for (Team tema : response.getData()) {
+                response2 -> {
+                    for (Team tema : response2.getData()) {
 //                        Log.i("MyAmplifyApp", tema.getName());
 //                        Log.i("MyAmplifyApp", tema.getId());
                         teams.add(tema);

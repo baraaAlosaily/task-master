@@ -1,6 +1,6 @@
 {
   "api": {
-    "taskmaster": {
+    "newpro": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -8,7 +8,7 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 365,
+              "apiKeyExpirationDays": 300,
               "description": "new"
             }
           },
@@ -18,14 +18,14 @@
     }
   },
   "auth": {
-    "taskmasterb1ab77f4": {
+    "taskmaster1a291969": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "loginMechanisms": [
-          "EMAIL"
+          "PREFERRED_USERNAME"
         ],
         "signupAttributes": [
           "EMAIL"
@@ -39,6 +39,12 @@
           "SMS"
         ]
       }
+    }
+  },
+  "storage": {
+    "newprject": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

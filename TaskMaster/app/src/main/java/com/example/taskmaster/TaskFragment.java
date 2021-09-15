@@ -1,12 +1,11 @@
 package com.example.taskmaster;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +44,7 @@ public class TaskFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, mTitle);
         args.putString(ARG_PARAM2, mBody);
-        args.putString(ARG_PARAM2, mState);
+        args.putString(ARG_PARAM3, mState);
         fragment.setArguments(args);
         return fragment;
     }
