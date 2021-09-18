@@ -13,4 +13,5 @@ Lab num|Date|Lab description|ScreenShot
 33|12/9| 1.In addtion to the previuos lab i just add a new three team hard coded and create reation between them and task so the one team will have many tasks|[link](./Screenshot6.md)
 36|14/9| Today i create new three activities that will helped me to apply acognito perincple witch are sign in sign up and verfication|[link](./Screenshot7.md)
 37|14/9| Today  i used S3 service from AWS to upload image of each task and handle it in the task details page |[link](./Screenshot7.md)
+38|18/9| Today  i used notification service from AWS to send and recived notification by using firebase  |[link](./Screenshot8.md)
 
